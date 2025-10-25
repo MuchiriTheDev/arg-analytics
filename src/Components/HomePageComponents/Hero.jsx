@@ -202,7 +202,7 @@ const Hero = () => {
         <div className={`text-center rounded-3xl p-4 md:p-8 max-w-5xl mx-auto w-full ${isLightMode ? '' : 'backdrop-blur-sm'}`}>
           {/* Headline: Enhanced responsive classes - Smaller on mobile */}
           <motion.h1 
-            className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 md:mb-6 text-[var(--primary-color)] drop-shadow-xl leading-tight"
+            className="text-2xl xs:text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 md:mb-6 text-[var(--primary-color)] drop-shadow-xl leading-tight"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
