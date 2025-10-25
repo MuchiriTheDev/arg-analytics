@@ -1,0 +1,82 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+/* =========================
+   High-Class Tech + Analytics Theme
+   ========================= */
+:root {
+  /* Dark Mode Defaults */
+  --bg-color: #0e0e0e; /* Deep black base for sophistication */
+  --text-color: rgba(255, 255, 255, 0.9);
+  --primary-color: #00b8b8; /* Teal – innovation and clarity */
+  --primary-hover: #009999; /* Slightly darker teal for hover */
+  --secondary-color: #1c1c1c; /* Charcoal gray – structure */
+  --border-color: #00b8b8; /* Teal borders for consistency */
+  --accent-color: #c5a052; /* Muted gold for luxury highlights */
+  --focus-outline: 3px solid var(--primary-color);
+
+  font-family: "poppins", "Inter", "Montserrat", system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================
+   Light Mode Overrides
+   ========================= */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-color: #03fce8;
+    --text-color: #1a1a1a;
+    --primary-color: #008c8c; /* Softer teal for light mode */
+    --primary-hover: #006f6f;
+    --secondary-color: #f7f9f9; /* Pale gray background */
+    --border-color: #00b8b8;
+    --accent-color: #b99642; /* Muted gold still fits */
+  }
+}
+
+/* =========================
+   Base Styles
+   ========================= */
+* {
+  font-family: 'poppins';
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* min-width: 320px;
+  min-height: 100vh; */
+}
+
+/* =========================
+   Links
+   ========================= */
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+
+
+
+/* =========================
+   Buttons
+
+
+/* =========================
+   Accent Elements
+   ========================= */
+.accent {
+  color: var(--accent-color);
+}
