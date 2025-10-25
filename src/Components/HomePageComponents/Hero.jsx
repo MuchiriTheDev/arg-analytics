@@ -222,7 +222,7 @@ const Hero = () => {
           
           {/* CTA Buttons: Stack on small screens, responsive gap - Full-width on mobile, rounded for touch */}
           <motion.div 
-            className="flex flex-row gap-3 md:gap-4 lg:gap-6 justify-center items-center"
+            className="flex flex-col md:flex-row gap-3 md:gap-4 lg:gap-6 justify-center items-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
