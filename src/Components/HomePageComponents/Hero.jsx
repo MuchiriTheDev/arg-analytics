@@ -202,7 +202,7 @@ const Hero = () => {
         <div className={`text-center rounded-3xl p-4 md:p-8 max-w-5xl mx-auto w-full ${isLightMode ? '' : 'backdrop-blur-sm'}`}>
           {/* Headline: Enhanced responsive classes - Smaller on mobile */}
           <motion.h1 
-            className="text-2xl xs:text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 md:mb-6 text-[var(--primary-color)] drop-shadow-xl leading-tight"
+            className="text-2xl my-6 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold  md:mb-6 text-[var(--primary-color)] drop-shadow-xl leading-tight"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -212,12 +212,12 @@ const Hero = () => {
           
           {/* Subheadline: Responsive text sizing - Tighter on mobile */}
           <motion.p 
-            className="text-xs xs:text-sm sm:text-base md:text-lg mb-6 md:mb-10 text-[var(--text-color)] max-w-3xl mx-auto leading-relaxed drop-shadow-md px-2"
+            className="text-xs sm:text-sm md:text-lg mb-6 md:mb-10 text-[var(--text-color)] max-w-3xl mx-auto leading-relaxed drop-shadow-md px-2"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            We build automations and AI agents that make work faster, cleaner, and more profitable—connecting global teams with seamless, intelligent workflows.
+            We build automations and AI agents that make work faster, cleaner, and more profitable connecting global teams with seamless, intelligent workflows.
           </motion.p>
           
           {/* CTA Buttons: Stack on small screens, responsive gap - Full-width on mobile, rounded for touch */}
@@ -228,17 +228,17 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
             <button 
-              className="px-4 py-3 xs:px-6 xs:py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-hover)] text-white font-semibold rounded-lg shadow-xl hover:shadow-[0_10px_30px_var(--primary-color)] transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/50 w-full sm:w-auto"
+              className="text-xs md:text-sm px-4 py-3 xs:px-4 xs:py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-hover)] text-white font-semibold rounded-lg shadow-xl hover:shadow-[0_10px_30px_var(--primary-color)] transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/50 w-fit sm:w-auto"
               aria-label="Book a Strategy Call"
             >
               Book a Strategy Call
             </button>
-            <button 
+            {/* <button 
               className="px-4 py-3 xs:px-6 xs:py-3 border-2 border-[var(--border-color)] hover:bg-[var(--secondary-color)] text-[var(--text-color)] font-semibold rounded-lg shadow-xl hover:shadow-[0_10px_30px_var(--primary-color)] transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/50 w-full sm:w-auto"
               aria-label="See Our Work"
             >
               See Our Work
-            </button>
+            </button> */}
           </motion.div>
         </div>
       </div>
