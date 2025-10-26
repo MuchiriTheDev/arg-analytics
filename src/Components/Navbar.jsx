@@ -53,9 +53,10 @@ const Navbar = () => {
   }, [scrollY, isHomePage])
 
   // Conditional background and text color based on page and scroll (stolen/adapted)
-  const backgroundColor = isHomePage
-    ? useTransform(scrollY, [0, 100], ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 1)'])
-    : 'rgba(255, 255, 255, 1)'
+ // Adaptive background: Fades from transparent to theme's --bg-color on home scroll; solid --bg-color elsewhere
+const backgroundColor = isHomePage
+  ? useTransform(scrollY, [0, 300], ['transparent', 'var(--bg-color)'])
+  : 'var(--bg-color)';
   const textColor = isHomePage
     ? useTransform(scrollY, [0, 100], ['#FFFFFF', 'var(--text-color)'])
     : 'var(--text-color)'
@@ -248,14 +249,14 @@ const Navbar = () => {
                 smooth={true}
                 offset={-70}
                 duration={500}
-                className="ml-4 px-6 py-2 bg-[var(--primary-color)] hover:bg-[var(--primary-hover)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_4px_12px_var(--primary-color)] transition-all duration-200 text-sm sm:text-base"
+                className="ml-4 px-4 py-2 bg-[var(--primary-color)] flex justify-center items-center hover:bg-[var(--primary-hover)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_4px_12px_var(--primary-color)] transition-all duration-200 text-sm sm:text-base"
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap={{ scale: 0.95 }}
                 onClick={closeDropdowns}
             >
-                <FaCalendarAlt className="mr-2 text-sm" aria-hidden="true" />
-                Book a Call
+                <FaCalendarAlt className="mr-2 text-sm text-white" aria-hidden="true" />
+                <p className="text-white text-sm">Book Call</p>
             </ScrollLink>
             </div>
         </div>
@@ -344,14 +345,14 @@ const Navbar = () => {
                     smooth={true}
                     offset={-70}
                     duration={500}
-                    className="block w-full text-center px-6 py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-hover)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_4px_12px_var(--primary-color)] transition-all duration-200"
+                    className="block w-full text-center flex justify-center items-center px-6 py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-hover)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_4px_12px_var(--primary-color)] transition-all duration-200"
                     variants={buttonVariants}
                     whileHover="hover"
                     whileTap={{ scale: 0.95 }}
                     onClick={closeDropdowns}
                 >
                     <FaCalendarAlt className="mr-2 inline" aria-hidden="true" />
-                    Book a Call
+                    <p className='text-white'>Book a Call</p>
                 </ScrollLink>
             </div>
          

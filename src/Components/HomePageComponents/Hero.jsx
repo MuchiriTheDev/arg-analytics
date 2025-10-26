@@ -198,7 +198,7 @@ const Hero = () => {
       />
       
       {/* Main Content: Glassmorphism panel, responsive padding/margins - Enhanced centering with flex wrapper - Adaptive card for light mode */}
-      <div className="fixed top-0 left-0 z-10 flex items-center justify-center h-full w-full px-2 sm:px-4">
+      <div className=" z-10 flex items-center justify-center h-full w-full px-2 sm:px-4">
         <div className={`text-center rounded-3xl p-4 md:p-8 max-w-5xl mx-auto w-full ${isLightMode ? '' : ''}`}>
           {/* Headline: Enhanced responsive classes - Smaller on mobile */}
           <motion.h1 
