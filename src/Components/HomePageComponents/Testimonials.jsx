@@ -5,19 +5,19 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 const testimonials = [
   {
     id: 1,
-    quote: "Arg Analytics transformed our reporting pipeline—now we save 20 hours weekly on audits alone. Their AI agents are game-changers.",
+    quote: "Arg Analytics transformed how we manage reporting and client deliverables. Their automations just work — quietly, efficiently, and reliably.",
     author: "John M",
     company: "JM Consulting"
   },
   {
     id: 2,
-    quote: "Seamless inventory sync across our branches. No more manual reconciliations—efficiency up 35%, thanks to their custom automations.",
+    quote: "The AI agents streamlined tasks that used to take hours. We’ve seen a real difference in accuracy and turnaround time.",
     author: "Moses M",
     company: "Standard Bank"
   },
   {
     id: 3,
-    quote: "From RFP responses to compliance checks, their agents handle it all with precision. We've doubled our bid win rate in months.",
+    quote: "Our project workflows are now fully automated. From procurement to tracking, everything is faster and more transparent.",
     author: "Bernard M",
     company: "BN Hardware & Construction"
   }
@@ -82,7 +82,7 @@ const Testimonials = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
-    }, 5000)
+    }, 10000)
     return () => clearInterval(interval)
   }, [])
 
