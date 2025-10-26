@@ -227,12 +227,13 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <button 
+            <a
+              href='https://calendly.com/brian-arg-analytics/30min'
               className="text-xs md:text-sm px-4 py-3 xs:px-4 xs:py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-hover)] text-white font-semibold rounded-lg shadow-xl hover:shadow-[0_10px_30px_var(--primary-color)] transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/50 w-fit sm:w-auto"
               aria-label="Book a Strategy Call"
             >
               Book a Strategy Call
-            </button>
+            </a>
             {/* <button 
               className="px-4 py-3 xs:px-6 xs:py-3 border-2 border-[var(--border-color)] hover:bg-[var(--secondary-color)] text-[var(--text-color)] font-semibold rounded-lg shadow-xl hover:shadow-[0_10px_30px_var(--primary-color)] transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/50 w-full sm:w-auto"
               aria-label="See Our Work"
