@@ -18,12 +18,12 @@ const WhatWeBuild = () => {
       icon: <FaBox className="w-8 h-8" />,
       link: '/services#inventory'
     },
-    {
-      id: 'audit',
-      title: 'Audit & Financial Reporting',
-      description: 'Automated compliance checks, report generation, and anomaly detection—cut audit time by 50% with zero errors.',
-      icon: <FaChartLine className="w-8 h-8" />,
-      link: '/services#audit'
+     {
+      id: 'internal-audit',
+      title: 'Internal Audit AI Agent',
+      description: 'Proactive risk assessment, policy enforcement, and reporting—enhance governance with continuous, AI-powered oversight.',
+      icon: <FaSearch className="w-8 h-8" />,
+      link: '/services#internal-audit'
     },
     {
       id: 'receivable',
@@ -39,13 +39,7 @@ const WhatWeBuild = () => {
       icon: <FaFileAlt className="w-8 h-8" />,
       link: '/services#rfp'
     },
-    {
-      id: 'internal-audit',
-      title: 'Internal Audit AI Agent',
-      description: 'Proactive risk assessment, policy enforcement, and reporting—enhance governance with continuous, AI-powered oversight.',
-      icon: <FaSearch className="w-8 h-8" />,
-      link: '/services#internal-audit'
-    },
+   
     {
       id: 'custom',
       title: 'Custom Automations & AI Agents',
