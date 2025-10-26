@@ -1,5 +1,3 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
@@ -7,14 +5,14 @@
    High-Class Tech + Analytics Theme
    ========================= */
 :root {
-  /* Dark Mode Defaults */
-  --bg-color: #0e0e0e; /* Deep black base for sophistication */
-  --text-color: rgba(255, 255, 255, 0.9);
-  --primary-color: #00b8b8; /* Teal – innovation and clarity */
-  --primary-hover: #009999; /* Slightly darker teal for hover */
-  --secondary-color: #1c1c1c; /* Charcoal gray – structure */
-  --border-color: #00b8b8; /* Teal borders for consistency */
-  --accent-color: #c5a052; /* Muted gold for luxury highlights */
+  /* Dark Mode Defaults - Futuristic: Deep void black with crisp teal highlights and subtle silver accents */
+  --bg-color: #0a0a0a; /* Ultra-deep black for infinite space feel */
+  --text-color: rgba(255, 255, 255, 0.95); /* Near-white for sharp readability */
+  --primary-color: #00b8b8; /* Core teal - innovation core */
+  --primary-hover: #00d4ff; /* Lighter cyber-teal glow on interaction */
+  --secondary-color: #1a1a1a; /* Subtle charcoal for structure, low-reflect */
+  --border-color: #00b8b8; /* Teal borders for consistency and pulse */
+  --accent-color: #4a90e2; /* Futuristic blue-silver for highlights, tech edge */
   --focus-outline: 3px solid var(--primary-color);
 
   font-family: "poppins", "Inter", "Montserrat", system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -30,17 +28,17 @@
 }
 
 /* =========================
-   Light Mode Overrides
+   Light Mode Overrides - Professional: Clean whites with soft teal, minimal contrast for modern minimalism
    ========================= */
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-color: #03fce8;
-    --text-color: #1a1a1a;
-    --primary-color: #008c8c; /* Softer teal for light mode */
-    --primary-hover: #006f6f;
-    --secondary-color: #f7f9f9; /* Pale gray background */
-    --border-color: #00b8b8;
-    --accent-color: #b99642; /* Muted gold still fits */
+    --bg-color: #fafafa; /* Soft off-white for airy professionalism */
+    --text-color: #2c3e50; /* Professional dark gray-blue for text */
+    --primary-color: #00b8b8; /* Vibrant teal retained */
+    --primary-hover: #00d4ff; /* Brighter teal for energy */
+    --secondary-color: #f8f9fa; /* Ultra-pale gray for subtle separation */
+    --border-color: #00b8b8; /* Consistent teal */
+    --accent-color: #4a90e2; /* Blue accent for futuristic touch */
   }
 }
 
@@ -67,16 +65,73 @@ a {
   text-decoration: none;
 }
 
-
-
-
 /* =========================
-   Buttons
+   Buttons - Enhanced for futuristic glow
+   ========================= */
+button {
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  padding: 0.6em 1.4em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
 
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0 0 20px var(--primary-color)/0.5; /* Futuristic glow */
+}
+
+button:focus,
+button:focus-visible {
+  outline: var(--focus-outline);
+}
 
 /* =========================
    Accent Elements
    ========================= */
 .accent {
   color: var(--accent-color);
+}
+
+/* Futuristic utility classes - Add glow to hovers where needed */
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 25px var(--primary-color)/0.3;
+}
+
+/* Subtle futuristic lines/borders */
+.border-futuristic {
+  border: 1px solid var(--border-color)/0.3;
+  background: linear-gradient(var(--border-color), var(--border-color)) no-repeat center / 0 1px;
+  transition: background-size 0.3s ease;
+}
+
+.border-futuristic:hover {
+  background-size: 100% 1px;
 }

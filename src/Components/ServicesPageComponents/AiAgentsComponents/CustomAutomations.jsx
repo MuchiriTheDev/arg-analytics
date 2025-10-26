@@ -1,8 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FaCheckCircle, FaClock, FaChartLine, FaHandshake, FaCalendarAlt } from 'react-icons/fa'
+import { FaCheckCircle, FaCode, FaCog, FaInfinity, FaShieldAlt, FaCalendarAlt, FaChartLine } from 'react-icons/fa'
 
-const AccountsReceivable = () => {
+const CustomAutomations = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -79,13 +79,15 @@ const AccountsReceivable = () => {
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-[var(--primary-color)] to-[var(--accent-color)] bg-clip-text text-transparent drop-shadow-lg leading-tight"
             variants={sectionVariants}
           >
-            Accounts Receivable AI Agent
+            Custom Automations & AI Agents
+            <br />
+            <span className="text-[var(--accent-color)]">(Python-enabled)</span>
           </motion.h1>
           <motion.p 
             className="text-sm md:text-base max-w-2xl mx-auto text-[var(--text-color)]/90 leading-relaxed"
             variants={sectionVariants}
           >
-            Automate invoice tracking, payment collection, and overdue reminders — maintain consistent cash flow without manual follow-ups.
+            Bespoke automation and AI solutions built with Python and orchestration tools, tailored to unique business problems that off-the-shelf tools can't solve.
           </motion.p>
         </motion.div>
 
@@ -106,11 +108,11 @@ const AccountsReceivable = () => {
           </motion.h2>
           <ul className="space-y-3 max-w-2xl mx-auto">
             {[
-              'Integration with your accounting or ERP software (e.g., QuickBooks, Xero, or Excel).',
-              'Automated invoice generation and reconciliation.',
-              'Smart reminders to clients based on due dates and payment behavior.',
-              'Real-time dashboards showing outstanding balances and aging summaries.',
-              'Optional WhatsApp or email notification system for collection teams.'
+              'Requirements discovery and technical scoping.',
+              'Custom Python agents (data transforms, ML models, API integrations).',
+              'Orchestration via n8n/Make/your preferred runner and robust error-handling.',
+              'Monitoring, logging, and scheduled maintenance plans.',
+              'Handover docs, small admin UI (if required), and knowledge transfer.'
             ].map((item, index) => (
               <motion.li
                 key={index}
@@ -141,10 +143,10 @@ const AccountsReceivable = () => {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {[
-              { icon: <FaClock className="w-4 h-4" />, title: 'Faster Payments', desc: 'Reduce average collection time by up to 40% with intelligent reminders.', stat: '+40%' },
-              { icon: <FaCheckCircle className="w-4 h-4" />, title: 'Reduced Manual Work', desc: 'Eliminate spreadsheet updates and manual chasers—free your team for strategic tasks.', stat: '0 Manual' },
-              { icon: <FaChartLine className="w-4 h-4" />, title: 'Improved Accuracy', desc: 'Automatic reconciliation ensures no invoices slip through—100% compliance guaranteed.', stat: '100%' },
-              { icon: <FaHandshake className="w-4 h-4" />, title: 'Better Client Relationships', desc: 'Polite, automated follow-ups keep communication consistent and professional.', stat: 'Proactive' }
+              { icon: <FaCode className="w-4 h-4" />, title: 'Unlimited Flexibility', desc: `Solve niche, complex problems that standard integrations can't.`, stat: 'Bespoke' },
+              { icon: <FaCog className="w-4 h-4" />, title: 'Ownership & Control', desc: 'Full-code solutions you can deploy and extend.', stat: 'Your Code' },
+              { icon: <FaInfinity className="w-4 h-4" />, title: 'Highly Efficient Workflows', desc: 'Custom agents automate tasks that would otherwise need full teams.', stat: 'Team-Free' },
+              { icon: <FaShieldAlt className="w-4 h-4" />, title: 'Scalable & Maintainable', desc: 'Built with production best-practices, logging, and monitoring included.', stat: 'Production-Ready' }
             ].map((benefit, index) => (
               <motion.div
                 key={index}
@@ -188,22 +190,22 @@ const AccountsReceivable = () => {
             className="text-base md:text-lg mb-6 text-[var(--text-color)]/90 italic font-light max-w-xl mx-auto leading-relaxed"
             variants={sectionVariants}
           >
-            Ready to reclaim your cash flow? Let's automate your receivables today.
+            Unlock custom AI for your unique challenges. Let's engineer your solution.
           </motion.p>
-          <motion.a
-            href="https://calendly.com/brian-arg-analytics/30min"
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[var(--primary-color)] to-[var(--accent-color)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_10px_25px_var(--primary-color)]/50 focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/50 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden"
-            variants={ctaVariants}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <FaCalendarAlt className="mr-2 text-white w-4 h-4 relative z-10" />
-            <span className="relative text-white z-10">Book a Free Consultation</span>
-          </motion.a>
+           <motion.a
+              href="https://calendly.com/brian-arg-analytics/30min"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[var(--primary-color)] to-[var(--accent-color)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_10px_25px_var(--primary-color)]/50 focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/50 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden"
+              variants={ctaVariants}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+               <FaCalendarAlt className="mr-2 text-white w-4 h-4 relative z-10" />
+               <span className="relative text-white z-10">Book a Free Consultation</span>
+            </motion.a>
         </motion.div>
       </div>
     </section>
   )
 }
 
-export default AccountsReceivable
+export default CustomAutomations

@@ -3,21 +3,36 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useViewportScroll, useTransform } from 'framer-motion'
 import { Link as ScrollLink } from 'react-scroll' // For smooth scrolling on same page
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom' // For page navigation
-import { FaChevronDown, FaBars, FaTimes, FaCalendarAlt } from 'react-icons/fa' // React Icons for chevrons and icons
+import { FaChevronDown, FaBars, FaTimes, FaCalendarAlt, FaSun, FaMoon } from 'react-icons/fa' // React Icons for chevrons and icons
 import { assets } from '../assets/assets'
-
-// Assume assets imported; replace with your logo path
-// import { assets } from '../assets/assets' // Adjust path as needed
 
 const Navbar = () => {
   const [isHomeOpen, setIsHomeOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const [theme, setTheme] = useState('dark') // 'dark' or 'light'
   const { scrollY } = useViewportScroll()
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation() // Get current page path
-  const isHomePage = location.pathname === '/' // Check if on homepage
+  const isHomeOrServicesPage = location.pathname === '/' || location.pathname === '/services' // Check if on homepage or services
   const navigate = useNavigate()
+
+  // Theme toggle logic
+  useEffect(() => {
+    // Load theme from localStorage or system preference
+    const savedTheme = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light')
+    setTheme(initialTheme)
+    document.documentElement.classList.toggle('light', initialTheme === 'light')
+  }, [])
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    setTheme(newTheme)
+    localStorage.setItem('theme', newTheme)
+    document.documentElement.classList.toggle('light', newTheme === 'light')
+  }
 
   const navItems = [
     {
@@ -35,16 +50,19 @@ const Navbar = () => {
       id: 'services',
       label: 'Services',
       dropdown: [
-        { label: 'AI Automation', to: 'ai-automation', page: '/services' },
-        { label: 'Analytics', to: 'analytics', page: '/services' },
-        { label: 'Consulting', to: 'consulting', page: '/services' }
+        { label: 'Accounts Receivable', to: 'accounts-receivable', page: '/services' },
+        { label: 'RFP AI Agent', to: 'rfp', page: '/services' },
+        { label: 'Internal Audit', to: 'internal-audit', page: '/services' },
+        { label: 'Ecommerce Engine', to: 'ecommerce', page: '/services' },
+        { label: 'Multi-Channel Inventory', to: 'inventory', page: '/services' },
+        { label: 'Custom Automations', to: 'custom', page: '/services' }
       ]
     }
   ]
 
-  // Track scroll position for homepage only (stolen from provided Navbar)
+  // Track scroll position for homepage or services page
   useEffect(() => {
-    if (isHomePage) {
+    if (isHomeOrServicesPage) {
       const unsubscribe = scrollY.onChange((y) => {
         setIsScrolled(y > 100)
       })
@@ -52,14 +70,13 @@ const Navbar = () => {
     } else {
       setIsScrolled(false) // No scroll effect on other pages
     }
-  }, [scrollY, isHomePage])
+  }, [scrollY, isHomeOrServicesPage])
 
-  // Conditional background and text color based on page and scroll (stolen/adapted)
- // Adaptive background: Fades from transparent to theme's --bg-color on home scroll; solid --bg-color elsewhere
-const backgroundColor = isHomePage
-  ? useTransform(scrollY, [0, 300], ['transparent', 'var(--bg-color)'])
-  : 'var(--bg-color)';
-  const textColor = isHomePage
+  // Conditional background and text color based on page and scroll
+  const backgroundColor = isHomeOrServicesPage
+    ? useTransform(scrollY, [0, 100], ['transparent', 'var(--bg-color)'])
+    : 'var(--bg-color)'
+  const textColor = isHomeOrServicesPage
     ? useTransform(scrollY, [0, 100], ['#FFFFFF', 'var(--text-color)'])
     : 'var(--text-color)'
 
@@ -105,9 +122,9 @@ const backgroundColor = isHomePage
 
   const NavItemDesktop = ({ item }) => (
     <div className="relative group" onMouseLeave={() => closeDropdowns()}>
-      <button
+      <div
         onClick={() => toggleDropdown(item.id)}
-        className="flex items-center space-x-1 px-3 py-2 text-[var(--text-color)] font-medium rounded-md hover:text-[var(--primary-color)] hover:bg-[var(--primary-color)]/10 transition-all duration-200"
+        className="flex items-center space-x-1 px-3 py-2 text-[var(--text-color)] font-medium rounded-md hover:text-[var(--primary-color)] hover:bg-[var(--primary-color)]/10 transition-all duration-200 cursor-pointer"
         style={{ color: textColor }}
       >
         <span>{item.label}</span>
@@ -118,7 +135,7 @@ const backgroundColor = isHomePage
         >
           <FaChevronDown />
         </motion.span>
-      </button>
+      </div>
 
       <AnimatePresence>
         {((item.id === 'home' && isHomeOpen) || (item.id === 'services' && isServicesOpen)) && (
@@ -141,18 +158,6 @@ const backgroundColor = isHomePage
   )
 
   // Animation variants (stolen/adapted from provided Navbar)
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        when: 'beforeChildren',
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
   const linkVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -188,13 +193,15 @@ const backgroundColor = isHomePage
       transition: { duration: 0.2 },
     },
   }
-
-  const underlineVariants = {
-    hidden: { scaleX: 0 },
-    hover: {
-      scaleX: 1,
-      transition: { duration: 0.3, ease: 'easeInOut' },
-    },
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1
+      }
+    }
   }
 
   const mobileMenuVariants = {
@@ -214,7 +221,7 @@ const backgroundColor = isHomePage
   return (
     <motion.nav
       className={`fixed top-0 left-0 w-full z-50 transition-shadow duration-300 ${
-        isScrolled && isHomePage ? 'shadow-md' : ''
+        isScrolled && isHomeOrServicesPage ? 'shadow-md' : ''
       }`}
       style={{ backgroundColor }}
       initial="hidden"
@@ -235,7 +242,6 @@ const backgroundColor = isHomePage
             alt="Your Logo"
             className=" px-5 h-20 w-auto" // Adjust size as needed
           />
-          
         </RouterLink>
 
         {/* Desktop Nav Items */}
@@ -243,27 +249,36 @@ const backgroundColor = isHomePage
           {navItems.map((item) => (
             <NavItemDesktop key={item.id} item={item} />
           ))}
+          {/* Theme Toggle Button - Desktop */}
+          <motion.button
+            className="p-2 rounded-md hover:bg-[var(--primary-color)]/10 transition-colors"
+            style={{ color: textColor }}
+            onClick={toggleTheme}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? <FaSun /> : <FaMoon />}
+          </motion.button>
           {/* Book a Call Button - Desktop (stolen/adapted) */}
-            <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center">
             <ScrollLink
-                to="call-to-action"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="ml-4 px-4 py-2 bg-[var(--primary-color)] flex justify-center items-center hover:bg-[var(--primary-hover)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_4px_12px_var(--primary-color)] transition-all duration-200 text-sm sm:text-base"
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap={{ scale: 0.95 }}
-                onClick={closeDropdowns}
+              to={location.pathname === '/services' ? 'call-to-action' : 'call-to-action'}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              className="ml-4 px-4 py-2 bg-[var(--primary-color)] flex justify-center items-center hover:bg-[var(--primary-hover)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_4px_12px_var(--primary-color)] transition-all duration-200 text-sm sm:text-base"
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap={{ scale: 0.95 }}
+              onClick={closeDropdowns}
             >
-                <FaCalendarAlt className="mr-2 text-sm text-white" aria-hidden="true" />
-                <p className="text-white text-sm">Book Call</p>
+              <FaCalendarAlt className="mr-2 text-sm text-white" aria-hidden="true" />
+              <p className="text-white text-sm">Book Call</p>
             </ScrollLink>
-            </div>
+          </div>
         </div>
-
-        
 
         {/* Mobile Menu Toggle (stolen) */}
         <motion.button
@@ -337,27 +352,41 @@ const backgroundColor = isHomePage
                     )}
                   </AnimatePresence>
                 </div>
-              ))}   {/* Mobile Book a Call Button */}
-           
+              ))}
             </div>
-             <div className="pt-2 border-t border-[var(--border-color)]/20">
-                <ScrollLink
-                    to="call-to-action"
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    className="block w-full text-center flex justify-center items-center px-6 py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-hover)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_4px_12px_var(--primary-color)] transition-all duration-200"
-                    variants={buttonVariants}
-                    whileHover="hover"
-                    whileTap={{ scale: 0.95 }}
-                    onClick={closeDropdowns}
-                >
-                    <FaCalendarAlt className="mr-2 inline" aria-hidden="true" />
-                    <p className='text-white'>Book a Call</p>
-                </ScrollLink>
+
+            {/* Mobile Theme Toggle */}
+            <div className="pt-2 border-t border-[var(--border-color)]/20 mb-4">
+              <motion.button
+                className="w-full flex justify-center items-center px-4 py-3 text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors"
+                onClick={toggleTheme}
+                variants={linkVariants}
+                whileHover={{ scale: 1.02 }}
+                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              >
+                {theme === 'dark' ? <FaSun className="w-5 h-5" /> : <FaMoon className="w-5 h-5" />}
+                <span className="ml-2 text-sm capitalize">{theme} Mode</span>
+              </motion.button>
             </div>
-         
+
+            {/* Mobile Book a Call Button */}
+            <div className="pt-2 border-t border-[var(--border-color)]/20">
+              <ScrollLink
+                to={location.pathname === '/services' ? 'call-to-action' : 'call-to-action'}
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                className="block w-full text-center flex justify-center items-center px-6 py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-hover)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_4px_12px_var(--primary-color)] transition-all duration-200"
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap={{ scale: 0.95 }}
+                onClick={closeDropdowns}
+              >
+                <FaCalendarAlt className="mr-2 inline" aria-hidden="true" />
+                <p className='text-white'>Book a Call</p>
+              </ScrollLink>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

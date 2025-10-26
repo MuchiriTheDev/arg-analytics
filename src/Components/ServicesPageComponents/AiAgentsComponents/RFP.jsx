@@ -1,8 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FaCheckCircle, FaClock, FaChartLine, FaHandshake, FaCalendarAlt } from 'react-icons/fa'
+import { FaCheckCircle, FaFileAlt, FaTrophy, FaClock, FaShieldAlt, FaDatabase, FaChartLine } from 'react-icons/fa'
+import { FaCalendarAlt } from 'react-icons/fa'
 
-const AccountsReceivable = () => {
+const RFP = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -79,13 +80,13 @@ const AccountsReceivable = () => {
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-[var(--primary-color)] to-[var(--accent-color)] bg-clip-text text-transparent drop-shadow-lg leading-tight"
             variants={sectionVariants}
           >
-            Accounts Receivable AI Agent
+            RFP AI Agent
           </motion.h1>
           <motion.p 
             className="text-sm md:text-base max-w-2xl mx-auto text-[var(--text-color)]/90 leading-relaxed"
             variants={sectionVariants}
           >
-            Automate invoice tracking, payment collection, and overdue reminders — maintain consistent cash flow without manual follow-ups.
+            The RFP AI Agent simplifies and accelerates the Request for Proposal process by automating document review, compliance validation, and initial proposal drafting — ideal for consulting, IT, construction, and government contracting firms.
           </motion.p>
         </motion.div>
 
@@ -106,11 +107,11 @@ const AccountsReceivable = () => {
           </motion.h2>
           <ul className="space-y-3 max-w-2xl mx-auto">
             {[
-              'Integration with your accounting or ERP software (e.g., QuickBooks, Xero, or Excel).',
-              'Automated invoice generation and reconciliation.',
-              'Smart reminders to clients based on due dates and payment behavior.',
-              'Real-time dashboards showing outstanding balances and aging summaries.',
-              'Optional WhatsApp or email notification system for collection teams.'
+              'Auto-extraction of key requirements from RFP documents (PDF, Word, or scanned).',
+              'Compliance checklist generation and gap analysis.',
+              'Draft proposal templates auto-filled with company data and past project references.',
+              'Centralized RFP tracking dashboard.',
+              'Optional approval workflow for team collaboration.'
             ].map((item, index) => (
               <motion.li
                 key={index}
@@ -141,10 +142,10 @@ const AccountsReceivable = () => {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {[
-              { icon: <FaClock className="w-4 h-4" />, title: 'Faster Payments', desc: 'Reduce average collection time by up to 40% with intelligent reminders.', stat: '+40%' },
-              { icon: <FaCheckCircle className="w-4 h-4" />, title: 'Reduced Manual Work', desc: 'Eliminate spreadsheet updates and manual chasers—free your team for strategic tasks.', stat: '0 Manual' },
-              { icon: <FaChartLine className="w-4 h-4" />, title: 'Improved Accuracy', desc: 'Automatic reconciliation ensures no invoices slip through—100% compliance guaranteed.', stat: '100%' },
-              { icon: <FaHandshake className="w-4 h-4" />, title: 'Better Client Relationships', desc: 'Polite, automated follow-ups keep communication consistent and professional.', stat: 'Proactive' }
+              { icon: <FaTrophy className="w-4 h-4" />, title: 'Win More Contracts', desc: 'Faster turnaround gives you a competitive edge in bidding.', stat: '2x Wins' },
+              { icon: <FaShieldAlt className="w-4 h-4" />, title: 'Guaranteed Compliance', desc: 'Never miss a requirement or document clause again.', stat: 'Zero Misses' },
+              { icon: <FaClock className="w-4 h-4" />, title: 'Time Savings', desc: 'Reduce hours of manual document review and formatting.', stat: '-80% Time' },
+              { icon: <FaDatabase className="w-4 h-4" />, title: 'Knowledge Retention', desc: 'Store previous RFP responses for future reuse and consistency.', stat: 'Reusable' }
             ].map((benefit, index) => (
               <motion.div
                 key={index}
@@ -188,22 +189,22 @@ const AccountsReceivable = () => {
             className="text-base md:text-lg mb-6 text-[var(--text-color)]/90 italic font-light max-w-xl mx-auto leading-relaxed"
             variants={sectionVariants}
           >
-            Ready to reclaim your cash flow? Let's automate your receivables today.
+            Streamline your RFPs and win more bids. Let's get started.
           </motion.p>
           <motion.a
-            href="https://calendly.com/brian-arg-analytics/30min"
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[var(--primary-color)] to-[var(--accent-color)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_10px_25px_var(--primary-color)]/50 focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/50 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden"
-            variants={ctaVariants}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <FaCalendarAlt className="mr-2 text-white w-4 h-4 relative z-10" />
-            <span className="relative text-white z-10">Book a Free Consultation</span>
-          </motion.a>
+                        href="https://calendly.com/brian-arg-analytics/30min"
+                        className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[var(--primary-color)] to-[var(--accent-color)] text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_10px_25px_var(--primary-color)]/50 focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/50 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden"
+                        variants={ctaVariants}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                         <FaCalendarAlt className="mr-2 text-white w-4 h-4 relative z-10" />
+                         <span className="relative text-white z-10">Book a Free Consultation</span>
+                      </motion.a>
         </motion.div>
       </div>
     </section>
   )
 }
 
-export default AccountsReceivable
+export default RFP
