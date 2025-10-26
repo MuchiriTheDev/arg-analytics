@@ -23,7 +23,7 @@ const HowItWorks = () => {
     {
       id: 3,
       number: 3,
-      title: 'Optimize',
+      title: 'deploy & Optimize',
       description: 'We monitor performance and scale as you grow—iterating with data-driven insights for continuous evolution and peak results.',
       icon: <FaChartLine className="w-10 h-10" />,
       color: 'from-[var(--primary-hover)] to-[var(--accent-color)]'
