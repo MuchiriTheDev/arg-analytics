@@ -124,7 +124,7 @@ const Testimonials = () => {
           style={{ color: 'var(--text-color)' }}
           variants={itemVariants}
         >
-          <p>In business since 2020 — trusted by founders, coaches, consultants & speakers across the U.S.</p>
+          <p>In business since 2020 — trusted by founders, consultants & executives across the world.</p>
         </motion.div>
 
         {/* Testimonial Slider */}
