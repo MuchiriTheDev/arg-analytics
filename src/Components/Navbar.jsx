@@ -29,7 +29,6 @@ const Navbar = () => {
         { label: 'Why Choose Us', to: 'why-choose-us', page: '/' },
         { label: 'Testimonials', to: 'testimonials', page: '/' },
         { label: 'Call To Action', to: 'call-to-action', page: '/' },
-        { label: 'Contact', to: 'contact', page: '/' }
       ]
     },
     {
