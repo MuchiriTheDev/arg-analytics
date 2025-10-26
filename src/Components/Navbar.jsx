@@ -24,8 +24,11 @@ const Navbar = () => {
       id: 'home',
       label: 'Home',
       dropdown: [
-        { label: 'About', to: 'about', page: '/' },
-        { label: 'Features', to: 'features', page: '/' },
+        { label: 'What we offer', to: 'what-we-build', page: '/' },
+        { label: 'How It Works', to: 'how-it-works', page: '/' },
+        { label: 'Why Choose Us', to: 'why-choose-us', page: '/' },
+        { label: 'Testimonials', to: 'testimonials', page: '/' },
+        { label: 'Call To Action', to: 'call-to-action', page: '/' },
         { label: 'Contact', to: 'contact', page: '/' }
       ]
     },
@@ -244,7 +247,7 @@ const backgroundColor = isHomePage
           {/* Book a Call Button - Desktop (stolen/adapted) */}
             <div className="hidden md:flex items-center">
             <ScrollLink
-                to="contact"
+                to="call-to-action"
                 spy={true}
                 smooth={true}
                 offset={-70}
@@ -340,7 +343,7 @@ const backgroundColor = isHomePage
             </div>
              <div className="pt-2 border-t border-[var(--border-color)]/20">
                 <ScrollLink
-                    to="contact"
+                    to="call-to-action"
                     spy={true}
                     smooth={true}
                     offset={-70}

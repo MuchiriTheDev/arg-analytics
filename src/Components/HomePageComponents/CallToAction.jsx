@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaCalendarAlt, FaEnvelope, FaLinkedin, FaPaperPlane } from 'react-icons/fa'
-import { FaLinkedinIn } from 'react-icons/fa6'
+import { FaCalendarAlt, FaEnvelope, FaLinkedinIn, FaPaperPlane } from 'react-icons/fa'
+
+// Replace 'YOUR_WEB3FORMS_ACCESS_KEY' with your actual Web3Forms access key (get free from web3forms.com)
+const WEB3FORMS_ACCESS_KEY = 'bfe9ff63-f762-4f46-843e-7e0120e9c082'
 
 const CallToAction = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
@@ -17,13 +19,30 @@ const CallToAction = () => {
     setIsSubmitting(true)
     setSubmitStatus('')
 
-    // Simulate form submission (replace with your API endpoint, e.g., EmailJS or backend)
+    // Prepare data for Web3Forms
+    const submitData = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      ...formData,
+      subject: `New Inquiry from ${formData.name} - Arg Analytics Contact Form`
+    }
+
     try {
-      // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) })
-      await new Promise(resolve => setTimeout(resolve, 1500)) // Mock delay
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', message: '' })
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submitData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        throw new Error('Submission failed')
+      }
     } catch (error) {
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -102,7 +121,7 @@ const CallToAction = () => {
           whileHover="hover"
         >
           <a
-            href="https://calendly.com/your-link/strategy-call" // Replace with your Calendly/booking link
+            href="https://calendly.com/brian-arg-analytics/30min" // Replace with your Calendly/booking link
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover)] text-white font-semibold rounded-2xl shadow-xl hover:shadow-[0_15px_35px_var(--primary-color)]/50 focus:outline-none focus:ring-4 focus:ring-[var(--primary-color)]/50 transition-all duration-300 transform active:scale-[0.98]"
@@ -112,7 +131,7 @@ const CallToAction = () => {
           </a>
         </motion.div>
 
-        {/* Contact Form */}
+        {/* Contact Form - Integrated with Web3Forms */}
         <motion.form
           onSubmit={handleSubmit}
           className="max-w-lg mx-auto space-y-4"

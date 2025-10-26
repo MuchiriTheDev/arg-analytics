@@ -189,7 +189,7 @@ const Testimonials = () => {
             <motion.button
               key={index}
               className="w-3 h-3 rounded-full"
-              style={{ backgroundColor: index === currentIndex ? 'var(--primary-color)' : 'var(--border-color)' }}
+              style={{ backgroundColor: index === currentIndex ? 'blue' : 'var(--border-color)' }}
               variants={dotVariants}
               initial="hidden"
               animate={index === currentIndex ? 'active' : 'visible'}
