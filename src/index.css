@@ -4,7 +4,7 @@
 /* =========================
    High-Class Tech + Analytics Theme
    ========================= */
-:root {
+html.dark {
   /* Dark Mode Defaults - Futuristic: Deep void black with crisp teal highlights and subtle silver accents */
   --bg-color: #0a0a0a; /* Ultra-deep black for infinite space feel */
   --text-color: rgba(255, 255, 255, 0.95); /* Near-white for sharp readability */
@@ -30,16 +30,16 @@
 /* =========================
    Light Mode Overrides - Professional: Clean whites with soft teal, minimal contrast for modern minimalism
    ========================= */
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg-color: #fafafa; /* Soft off-white for airy professionalism */
-    --text-color: #2c3e50; /* Professional dark gray-blue for text */
+html.light {
+  
+    --bg-color: #ffffff; /* Pure white for clean and crisp feel */
+    --text-color: #333333; /* Darker grey for improved readability */
     --primary-color: #00b8b8; /* Vibrant teal retained */
     --primary-hover: #00d4ff; /* Brighter teal for energy */
-    --secondary-color: #f8f9fa; /* Ultra-pale gray for subtle separation */
-    --border-color: #00b8b8; /* Consistent teal */
+    --secondary-color: #f0f0f0; /* Light grey for subtle separation */
+    --border-color: #cccccc; /* Softer border color for light mode */
     --accent-color: #4a90e2; /* Blue accent for futuristic touch */
-  }
+  
 }
 
 /* =========================

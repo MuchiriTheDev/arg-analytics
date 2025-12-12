@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState, Suspense, lazy } from 'react'
 import { motion } from 'framer-motion'
+import { useTheme } from '../../contexts/ThemeContext'
 
 // Lazy load react-globe.gl for client-side only rendering in Vite + React
 const Globe = lazy(() => import('react-globe.gl').then((module) => ({ default: module.default })))
@@ -31,7 +32,8 @@ const Hero = () => {
   const [isGlobeReady, setIsGlobeReady] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
-  const [isLightMode, setIsLightMode] = useState(false)
+  const { theme } = useTheme()
+  const isLightMode = theme === 'light'
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -47,15 +49,6 @@ const Hero = () => {
     updateDimensions() // Initial set
     window.addEventListener('resize', updateDimensions)
     return () => window.removeEventListener('resize', updateDimensions)
-  }, [])
-
-  useEffect(() => {
-    // Detect light mode based on media query (matches CSS prefers-color-scheme)
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: light)')
-    setIsLightMode(mediaQuery.matches)
-    const handleChange = (e) => setIsLightMode(e.matches)
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
   useEffect(() => {
@@ -115,8 +108,8 @@ const Hero = () => {
   return (
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-[var(--bg-color)]">
       {/* Professional Sky-like Background: Multi-layer gradient for immersive altitude effect - Day/Night adaptive */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${isLightMode ? 'from-sky-900 via-blue-700/70 to-cyan-200/50' : 'from-slate-900 via-blue-900/70 to-teal-900/50'}`} />
-      <div className={`absolute inset-0 ${isLightMode ? 'bg-[radial-gradient(ellipse_at_top,_transparent_0%,#f0f9ff_70%)]' : 'bg-[radial-gradient(ellipse_at_top,_transparent_0%,var(--bg-color)_70%)]'}`} />
+      <div className={`absolute inset-0 bg-gradient-to-br ${isLightMode ? 'from-blue-200 via-sky-300 to-cyan-100' : 'from-slate-900 via-blue-900/70 to-teal-900/50'}`} />
+      <div className={`absolute inset-0 ${isLightMode ? 'bg-[radial-gradient(ellipse_at_top,_transparent_0%,#e0f2f7_70%)]' : 'bg-[radial-gradient(ellipse_at_top,_transparent_0%,var(--bg-color)_70%)]'}`} />
       
       {/* Lazy-Loaded Globe: Now sized to parent container ref for perfect fit, full viewport - Day texture in light mode */}
       <Suspense fallback={
@@ -137,12 +130,12 @@ const Hero = () => {
             ref={globeEl}
             globeImageUrl={isLightMode ? "https://unpkg.com/three-globe/example/img/earth-day.jpg" : "https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"} // Day texture for light mode
             bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
-            atmosphereColor={isLightMode ? "#03fce8" : "#00b8b8"} // Sky blue atmosphere for day
+            atmosphereColor={isLightMode ? "#87ceeb" : "#00b8b8"} // Sky blue atmosphere for day
             atmosphereAltitude={0.2}
             atmosphereBlur={2}
             showAtmosphere={true}
             showGlobe={true}
-            globeGlowColor={isLightMode ? "#03fce8" : "#00b8b8"}
+            globeGlowColor={isLightMode ? "#87ceeb" : "#00b8b8"}
             globeGlowPower={isLightMode ? 1.5 : 3} // Softer glow in light mode
             backgroundColor="rgba(0,0,0,0)"
             width={dimensions.width}

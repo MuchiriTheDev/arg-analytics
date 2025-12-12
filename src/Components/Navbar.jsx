@@ -3,19 +3,21 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useViewportScroll, useTransform } from 'framer-motion'
 import { Link as ScrollLink } from 'react-scroll' // For smooth scrolling on same page
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom' // For page navigation
-import { FaChevronDown, FaBars, FaTimes, FaCalendarAlt, FaSun, FaMoon } from 'react-icons/fa' // React Icons for chevrons and icons
+import { FaChevronDown, FaBars, FaTimes, FaCalendarAlt } from 'react-icons/fa' // React Icons for chevrons and icons
 import { assets } from '../assets/assets'
+import { useTheme } from '../contexts/ThemeContext'
+import ThemeToggleButton from './ThemeToggleButton'
 
 const Navbar = () => {
   const [isHomeOpen, setIsHomeOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
-  const [theme, setTheme] = useState('dark') // 'dark' or 'light'
   const { scrollY } = useViewportScroll()
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation() // Get current page path
   const isHomeOrServicesPage = location.pathname === '/' || location.pathname === '/services' // Check if on homepage or services
   const navigate = useNavigate()
+  const { theme, toggleTheme } = useTheme()
 
   // Theme toggle logic
   useEffect(() => {
@@ -23,16 +25,16 @@ const Navbar = () => {
     const savedTheme = localStorage.getItem('theme')
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light')
-    setTheme(initialTheme)
+    // setTheme(initialTheme) // This line is removed as per the edit hint
     document.documentElement.classList.toggle('light', initialTheme === 'light')
   }, [])
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark'
-    setTheme(newTheme)
-    localStorage.setItem('theme', newTheme)
-    document.documentElement.classList.toggle('light', newTheme === 'light')
-  }
+  // const toggleTheme = () => { // This function is removed as per the edit hint
+  //   const newTheme = theme === 'dark' ? 'light' : 'dark'
+  //   setTheme(newTheme)
+  //   localStorage.setItem('theme', newTheme)
+  //   document.documentElement.classList.toggle('light', newTheme === 'light')
+  // }
 
   const navItems = [
     {
@@ -250,16 +252,7 @@ const Navbar = () => {
             <NavItemDesktop key={item.id} item={item} />
           ))}
           {/* Theme Toggle Button - Desktop */}
-          <motion.button
-            className="p-2 rounded-md hover:bg-[var(--primary-color)]/10 transition-colors"
-            style={{ color: textColor }}
-            onClick={toggleTheme}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          >
-            {theme === 'dark' ? <FaSun /> : <FaMoon />}
-          </motion.button>
+          <ThemeToggleButton />
           {/* Book a Call Button - Desktop (stolen/adapted) */}
           <div className="hidden md:flex items-center">
             <ScrollLink
@@ -357,16 +350,7 @@ const Navbar = () => {
 
             {/* Mobile Theme Toggle */}
             <div className="pt-2 border-t border-[var(--border-color)]/20 mb-4">
-              <motion.button
-                className="w-full flex justify-center items-center px-4 py-3 text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors"
-                onClick={toggleTheme}
-                variants={linkVariants}
-                whileHover={{ scale: 1.02 }}
-                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              >
-                {theme === 'dark' ? <FaSun className="w-5 h-5" /> : <FaMoon className="w-5 h-5" />}
-                <span className="ml-2 text-sm capitalize">{theme} Mode</span>
-              </motion.button>
+              <ThemeToggleButton />
             </div>
 
             {/* Mobile Book a Call Button */}
